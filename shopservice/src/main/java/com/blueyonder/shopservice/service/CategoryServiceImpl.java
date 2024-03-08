@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blueyonder.shopservice.entity.Category;
+import com.blueyonder.shopservice.entity.Product;
 import com.blueyonder.shopservice.exceptions.CategoryNotFoundException;
+import com.blueyonder.shopservice.exceptions.ProductNotFoundException;
 import com.blueyonder.shopservice.repository.CategoryRepository;
 
 @Service
@@ -70,6 +72,47 @@ public class CategoryServiceImpl implements CategoryService {
 			throw new CategoryNotFoundException();
 		}
 		
+	}
+
+	@Override
+	public Category updateCategoryById(Category category){
+		Category c=null;
+		try {
+			c = getCategoryById(category.getCategoryId());
+			 if(c!=null) {
+				 logger.info("Category present ...(getCategoryById)");
+				return categoryrepo.save(category);
+			}else {
+				logger.error("Category not present...(getCategoryById)");
+				throw new CategoryNotFoundException();
+			}
+			 
+		} catch (CategoryNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	@Override
+	public Category updateCategoryByName(Category category) {
+		Category c=null;
+		try {
+			c = categoryrepo.findcategoryByName(category.getCategoryName());
+			 if(c!=null) {
+				 logger.info("Category present ...(findcategoryByName)");
+				return categoryrepo.save(category);
+			}else {
+				logger.error("Category not present...(findcategoryByName)");
+				throw new CategoryNotFoundException();
+			}
+			 
+		} catch (CategoryNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 

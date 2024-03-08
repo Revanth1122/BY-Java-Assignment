@@ -17,7 +17,7 @@ import com.blueyonder.shopservice.service.CategoryService;
 
 
 @RestController
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RequestMapping("/ecommerce/api/v1/category")
 public class CategoryController {
 	
@@ -51,4 +51,17 @@ public class CategoryController {
 		Category c = categoryservice.getCategoryByName(cname);
 		return new ResponseEntity<Category>(c,HttpStatus.OK);
 	}
+	@PostMapping("/update-category-by-id")
+	public ResponseEntity<Category> updateCategorybyid(@RequestBody Category category) {
+		Category c = categoryservice.updateCategoryById(category);
+		return new ResponseEntity<Category>(c,HttpStatus.OK);
+		
+	}
+	@PostMapping("/update-category-by-name")
+	public ResponseEntity<Category> updateCategorybyname(@RequestBody Category category) {
+		Category c = categoryservice.updateCategoryByName(category);
+		return new ResponseEntity<Category>(c,HttpStatus.OK);
+		
+	}
+	
 }

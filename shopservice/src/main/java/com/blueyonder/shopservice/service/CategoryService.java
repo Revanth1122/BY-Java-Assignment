@@ -8,8 +8,8 @@ import com.blueyonder.shopservice.exceptions.CategoryNotFoundException;
 public interface CategoryService {
 	public Category addCategory(Category category);
 	public String deleteCategoryById(Integer categoryId) throws CategoryNotFoundException;
-//	public Category updateCategoryById(Integer categoryId);
-//	public Category updateCategoryByName(String categoryName);
+	public Category updateCategoryById(Category category);
+	public Category updateCategoryByName(Category category);
 	public Iterable<Category> ListAllCategory();
 	public Category getCategoryById(Integer categoryId)throws CategoryNotFoundException;
 	public Category getCategoryByName(String cname)throws CategoryNotFoundException;

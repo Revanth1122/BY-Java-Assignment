@@ -2,6 +2,7 @@ package com.blueyonder.shopservice.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
@@ -39,7 +40,7 @@ public class Product {
 	private String description;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnoreProperties("products")
 	@JoinColumn(name="categoryId")
 	private Category category;
 }

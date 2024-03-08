@@ -2,6 +2,7 @@ package com.blueyonder.shopservice.entity;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.annotation.Nonnull;
@@ -39,7 +40,8 @@ public class Category {
 	
 	@OneToMany(mappedBy="category")
 	@Exclude
-	@JsonManagedReference
+	
+	@JsonIgnoreProperties("category")
 	private Set<Product> products;
 	
 	

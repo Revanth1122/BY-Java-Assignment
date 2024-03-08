@@ -1,12 +1,15 @@
 package com.blueyonder.shopservice.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blueyonder.shopservice.dto.ProductDto;
 import com.blueyonder.shopservice.entity.Category;
 import com.blueyonder.shopservice.entity.Product;
 
@@ -42,9 +45,17 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Iterable<Product> ListAllProduct() {
-		Iterable<Product> prod= prodrepo.findAll();
-		return prod;
+	public List<ProductDto> ListAllProduct() {
+		List<Product> products= (List<Product>) prodrepo.findAll();
+		
+		return products.stream()
+                .map(product -> new ProductDto(
+                        product.getProdId(),
+                        product.getProdName(),
+                        product.getPrice(),
+                        product.getDescription(),
+                        product.getCategory() != null ? product.getCategory().getCategoryName() : null))
+                .toList();
 	}
 
 	@Override
@@ -68,6 +79,47 @@ public class ProductServiceImpl implements ProductService{
 			logger.error("Product not present...(deleteProductById)");
 			throw new ProductNotFoundException();
 		}
+	}
+
+	@Override
+	public Product updateProductById(Product Product) {
+		Product prod;
+		try {
+			prod = getProductById(Product.getProdId());
+			if(prod!=null) {
+				logger.info("product updated successfully...");
+				return prodrepo.save(Product);
+			}else {
+				logger.error("Product not present...(getProductById)");
+				throw new ProductNotFoundException();
+			}
+			
+		} catch (ProductNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return null;
+		
+	}
+
+	@Override
+	public Product updateProductByName(Product Product) {
+		Product prod;
+		try {
+			prod = getProductByName(Product.getProdName());
+			if(prod!=null) {
+				logger.info("product updated successfully...");
+				return prodrepo.save(Product);
+			}else {
+				logger.error("Product not present...(getProductByName)");
+				throw new ProductNotFoundException();
+			}
+			
+		} catch (ProductNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return null;
 	}
 
 }

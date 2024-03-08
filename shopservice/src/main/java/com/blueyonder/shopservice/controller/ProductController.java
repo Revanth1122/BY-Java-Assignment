@@ -1,5 +1,7 @@
 package com.blueyonder.shopservice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blueyonder.shopservice.dto.ProductDto;
 import com.blueyonder.shopservice.entity.Product;
 
 import com.blueyonder.shopservice.exceptions.ProductNotFoundException;
@@ -18,7 +21,7 @@ import com.blueyonder.shopservice.exceptions.ProductNotFoundException;
 import com.blueyonder.shopservice.service.ProductService;
 
 @RestController
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RequestMapping("/ecommerce/api/v1/product")
 public class ProductController {
 	
@@ -37,8 +40,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("/all-product")
-	public Iterable<Product> ListAllproduct(){
-		Iterable<Product> listproduct = prodservice.ListAllProduct();
+	public List<ProductDto> ListAllproduct(){
+		List<ProductDto> listproduct = prodservice.ListAllProduct();
 		return listproduct;
 	}
 	@GetMapping("/get-product")
@@ -49,6 +52,17 @@ public class ProductController {
 	@GetMapping("/get-product-name")
 	public ResponseEntity<Product> getproductByName(@RequestParam(name="name") String cname)throws ProductNotFoundException{
 		Product p =  prodservice.getProductByName(cname);
+		return new ResponseEntity<Product>(p,HttpStatus.OK);
+	}
+	
+	@PostMapping("/update-by-id")
+	public ResponseEntity<Product> updateproductById(@RequestBody Product product) throws ProductNotFoundException{
+		Product p = prodservice.updateProductById(product);
+		return new ResponseEntity<Product>(p,HttpStatus.OK);
+	}
+	@PostMapping("/update-by-name")
+	public ResponseEntity<Product> updateproductByName(@RequestBody Product product) throws ProductNotFoundException{
+		Product p = prodservice.updateProductByName(product);
 		return new ResponseEntity<Product>(p,HttpStatus.OK);
 	}
 }
