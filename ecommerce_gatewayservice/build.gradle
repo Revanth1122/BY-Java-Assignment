@@ -27,9 +27,21 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webflux-ui
 implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webflux-ui', version: '2.3.0'
+implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '3.2.3'
+// https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.0.6.RELEASE'
+
+implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+	
+implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
 	}
 
 dependencyManagement {

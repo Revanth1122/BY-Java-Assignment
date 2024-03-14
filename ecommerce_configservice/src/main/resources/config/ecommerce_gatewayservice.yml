@@ -6,7 +6,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8061/eureka/
   instance: 
-    prefer-ip-address: true
+    preferIpAddress: true
       
 
 logging:
@@ -20,12 +20,12 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: UserService
-        uri: lb://UserService
+      - id: ecomm_service
+        uri: lb://ecomm_service
         predicates:
-        - Path=/UserService/**
-        filters:
-        - RewritePath=/UserService/(?<path>.*), /$\{path}
+        - Path=/auth/**
+        
+
       - id: shopservice
         uri: lb://shopservice
         predicates:
@@ -46,8 +46,8 @@ springdoc:
     urls:
       - name: shopservice
         url: /v3/api-docs/shopservice
-      - name : UserService
-        url : /v3/api-docs/UserService
+      - name : ecomm_service
+        url : /v3/api-docs/auth
       
   cache:
     disabled: true

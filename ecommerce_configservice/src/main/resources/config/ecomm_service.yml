@@ -6,11 +6,11 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8061/eureka/
   instance: 
-    prefer-ip-address: true
+    preferIpAddress: true
       
 logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
 
 springdoc:
-  packagesToScan: com.blueyonder.UserService
+  packagesToScan: com.blueyonder.ecomm_service

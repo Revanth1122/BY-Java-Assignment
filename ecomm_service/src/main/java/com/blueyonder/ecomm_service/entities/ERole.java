@@ -1,4 +1,4 @@
-package com.blueyonder.UserService.entity;
+package com.blueyonder.ecomm_service.entities;
 
 
 public enum ERole {

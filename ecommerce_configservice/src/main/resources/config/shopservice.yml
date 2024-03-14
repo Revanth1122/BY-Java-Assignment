@@ -6,7 +6,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8061/eureka/
   instance: 
-    prefer-ip-address: true
+    preferIpAddress: true
       
 logging:
   pattern: 

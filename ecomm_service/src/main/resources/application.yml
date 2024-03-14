@@ -1,0 +1,57 @@
+#spring.datasource.driver-class-name=org.postgresql.Driver
+#spring.datasource.url=jdbc:postgresql://localhost:5432/ecommerce
+#spring.datasource.username=postgres
+#spring.datasource.password=postgres
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.show-sql=true
+#
+#
+#spring.jpa.properties.hibernate.show_sql=true
+#ecomm_service.jwtSecret=BLUEYONDERBELLANDURBENGALURUBLUEYONDERBELLANDURBENGALURUBLUEYONDERBELLANDURBENGALURUBENGALURUBLUEYONDERBELLANDURBENGALURUBENGALURUBLUEYONDERBELLANDURBENGALURU
+#ecomm_service.jwtExpirationMs=86400000
+#
+#springdoc.swagger-ui.enabled=true
+#springdoc.swagger-ui.layout=BaseLayout
+#springdoc.swagger-ui.path=/swagger-ui.html
+#springdoc.swagger-ui.operationsSorter=method
+#springdoc.api-docs.path=/api-docs
+
+
+spring:
+  application:
+    name: ecomm_service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+ecomm_service:
+  jwtSecret: BLUEYONDERBELLANDURBENGALURUBLUEYONDERBELLANDURBENGALURUBLUEYONDERBELLANDURBENGALURUBENGALURUBLUEYONDERBELLANDURBENGALURUBENGALURUBLUEYONDERBELLANDURBENGALURU
+  jwtExpirationMs: 86400000
+springdoc:
+  swagger-ui:
+    enabled: true
+    layout: BaseLayout
+    path: /swagger-ui.html
+    operationsSorter: method
+  api-docs:
+    path: /api-docs
+management:
+  security:
+    enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
