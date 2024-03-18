@@ -50,8 +50,7 @@ springdoc:
     urls:
       - name: shopservice
         url: /v3/api-docs/shopservice
-      - name : ecomm_service
-        url : /v3/api-docs/auth
+     
       - name : login-service
         url : /v3/api-docs/api/auth
       
