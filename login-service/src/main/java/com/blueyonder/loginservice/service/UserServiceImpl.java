@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.blueyonder.loginservice.controller.UserController;
+
 import com.blueyonder.loginservice.entities.UserEntity;
 import com.blueyonder.loginservice.exceptions.PasswordMismatchException;
 import com.blueyonder.loginservice.exceptions.UserNameNotFoundException;
